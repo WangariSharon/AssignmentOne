@@ -22,30 +22,18 @@ $friends = $db->db_query('SELECT * FROM friends');
 			<th>Phone Number</th>
 		</tr>
 		</thead>
-	<tbody>";
+	<tbody>
+		<tr>
+			<?php foreach ($friends as $friend): ?>
 
+				<td><?=$friend->firstname?></td>
+				<td><?=$friend->lastname?></td>
+				<td><?=$friend->age?></td>
+				<td><?=$friend->phoneNumber?></td>
 
-
-
-
-		
-
-
-		while ( $count< $size) {
-			$table .= "<tr>";
-			$table .= "<td>". $friends[$count]->firstname."</td>";
-			$table .= "<td>". $friends[$count]->lastname."</td>";
-			$table .= "<td>". $friends[$count]->age."</td>";
-			$table .= "<td>". $friends[$count]->phoneNumber."</td>";
-			$table .= "<tr>";
-			$count++;
-		}
-$table.="</tbody>
-	</table>";
-	echo $table;
-
-?>
-
-
+			<?php endforeach ?>
+		<tr>
+	</tbody>
+</table>
 </body>
 </html>
