@@ -3,29 +3,17 @@
 	<title>Sample PHP Assignment</title>
 </head>
 <body>
-<?php 
-
+<?php
+require 'database.php';
 $database_name = 'akirachix';
-$password = '';
-$username = 'root';
- $server = 'localhost';
-	
-		require 'database.php';
+$password      = '';
+$username      = 'root';
+$server        = 'localhost';
 
-		$db = new Database($database_name, $password, $username, $server);
-
-		$conn = $db->connection();
-
-		$friends = $db->db_query('SELECT * FROM friends');
-		// echo "<pre>";
-		// print_r($friends);
-		// echo "</pre>";
-
-
-		$size = sizeof($friends);
-		$count = 0;
-$table = "";
-$table .= "<table>
+$db = new Database($database_name, $password, $username, $server);
+$friends = $db->db_query('SELECT * FROM friends');
+?>
+<table>
 		<thead>
 			<tr>
 			<th>First Name</th>
