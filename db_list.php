@@ -3,29 +3,17 @@
 	<title>Sample PHP Assignment</title>
 </head>
 <body>
-<?php 
-
+<?php
+require 'database.php';
 $database_name = 'akirachix';
-$password = '';
-$username = 'root';
- $server = 'localhost';
-	
-		require 'database.php';
+$password      = '';
+$username      = 'root';
+$server        = 'localhost';
 
-		$db = new Database($database_name, $password, $username, $server);
-
-		$conn = $db->connection();
-
-		$friends = $db->db_query('SELECT * FROM friends');
-		// echo "<pre>";
-		// print_r($friends);
-		// echo "</pre>";
-
-
-		$size = sizeof($friends);
-		$count = 0;
-$table = "";
-$table .= "<table>
+$db = new Database($database_name, $password, $username, $server);
+$friends = $db->db_query('SELECT * FROM friends');
+?>
+<table>
 		<thead>
 			<tr>
 			<th>First Name</th>
@@ -34,30 +22,18 @@ $table .= "<table>
 			<th>Phone Number</th>
 		</tr>
 		</thead>
-	<tbody>";
+	<tbody>
+		<tr>
+			<?php foreach ($friends as $friend): ?>
 
+				<td><?=$friend->firstname?></td>
+				<td><?=$friend->lastname?></td>
+				<td><?=$friend->age?></td>
+				<td><?=$friend->phoneNumber?></td>
 
-
-
-
-		
-
-
-		while ( $count< $size) {
-			$table .= "<tr>";
-			$table .= "<td>". $friends[$count]->firstname."</td>";
-			$table .= "<td>". $friends[$count]->lastname."</td>";
-			$table .= "<td>". $friends[$count]->age."</td>";
-			$table .= "<td>". $friends[$count]->phoneNumber."</td>";
-			$table .= "<tr>";
-			$count++;
-		}
-$table.="</tbody>
-	</table>";
-	echo $table;
-
-?>
-
-
+			<?php endforeach ?>
+		<tr>
+	</tbody>
+</table>
 </body>
 </html>
